@@ -4,7 +4,7 @@ library(ggplot2)
 library(dplyr)
 library(leaflet)
 
-# Load the iris dataset
+# Load the dataset
 data_race = 
 data_age = 
 data_locality = 
