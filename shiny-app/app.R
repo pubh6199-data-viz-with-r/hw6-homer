@@ -86,5 +86,5 @@ server <- function(input, output)
       theme(legend.position = "none")
     })
 
-
+ 
 shinyApp(ui = ui, server = server)
