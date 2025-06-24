@@ -1,4 +1,4 @@
-#Alia exploring data
+#Alia
 library(dplyr)
 library(readr)
 library(ggplot2)
@@ -6,11 +6,8 @@ library(tidyr)
 
 data_race = read.csv("/Users/aliajamil/Desktop/r/hw6-homer/data/pud-vdh-hri-ems-byrace")
 data_race = data_race %>% 
-  mutate(across(HRI.Incident.Count, na_if, "*"))%>%
-  drop_na() 
-
-data_race = data_race %>%
-  mutate(Incident.Year = as.integer(Incident.Year),
+  mutate(HRI.Incident.Count = as.numeric(ifelse(HRI.Incident.Count == "*", 2, HRI.Incident.Count)),
+         Incident.Year = as.integer(Incident.Year),
          HRI.Incident.Count = as.numeric(HRI.Incident.Count)) %>%
   arrange(Race.Category, Incident.Year)
 
