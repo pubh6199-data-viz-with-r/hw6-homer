@@ -43,22 +43,19 @@ ggplot(data_clean, aes(x = Incident.Year, y =HRI.Incident.Count, color = Patient
     y = "Number of Incidents",
     color = "Age Group"
   ) +
-  theme_minimal()
+  theme_classic()
 
 
 
 data_locality <- read.csv("/Users/ninawubu/Documents/pud-vdh-hri-ems-bylocality")
 
-
 data_clean <- data_locality %>%
   mutate(
-    HRI.Incident.Count = as.numeric(gsub("\\*", "", HRI.Incident.Count)),
-    Incident.Locality = str_to_title(Incident.Locality)
+    HRI.Incident.Count = as.numeric(ifelse(HRI.Incident.Count == "*", 2, HRI.Incident.Count)),
+    Incident.Locality = str_to_title(Incident.Locality),
+    Incident.Month = factor(Incident.Month, levels = 1:12, labels = month.name)
   ) %>%
   filter(!is.na(HRI.Incident.Count))
-
-data_clean <- data_clean %>%
-  mutate(date = make_date(year = Incident.Year, month = Incident.Month, day = 1))
 
 top_localities <- data_clean %>%
   group_by(Incident.Locality) %>%
@@ -68,11 +65,12 @@ top_localities <- data_clean %>%
 
 data_top10 <- data_clean %>%
   filter(Incident.Locality %in% top_localities)
-ggplot(data_top10, aes(x = date, y = fct_reorder(Incident.Locality, HRI.Incident.Count, .fun = sum), fill = HRI.Incident.Count)) +
+
+ggplot(data_top10, aes(x = Incident.Month, y = fct_reorder(Incident.Locality, HRI.Incident.Count, .fun = sum), fill = HRI.Incident.Count)) +
   geom_tile(color = "white") +
   scale_fill_viridis_c(option = "plasma", name = "Incident Count") +
   labs(
-    title = "Top 10 Localities: Heat-Related EMS Incidents Over Time",
+    title = "Top 10 Localities: Heat-Related EMS Incidents by Month",
     x = "Month",
     y = "Locality"
   ) +
