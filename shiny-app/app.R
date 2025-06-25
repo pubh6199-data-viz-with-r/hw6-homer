@@ -57,10 +57,12 @@ server <- function(input, output)
       filter(!is.na(HRI.Incident.Count)) %>% 
       filter(Incident.Year<= 2024)
     data_race = data_race %>% 
+      filter(Incident.Year<= 2024) %>%
       mutate(HRI.Incident.Count = as.numeric(ifelse(HRI.Incident.Count == "*", 2, HRI.Incident.Count)),
              Incident.Year = as.integer(Incident.Year),
              HRI.Incident.Count = as.numeric(HRI.Incident.Count)) %>%
       arrange(Race.Category, Incident.Year)
+    2
     
     data = rbind(data_age, data_race)
     return(data)

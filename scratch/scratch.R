@@ -6,6 +6,7 @@ library(tidyr)
 
 data_race = read.csv("/Users/aliajamil/Desktop/r/hw6-homer/data/pud-vdh-hri-ems-byrace")
 data_race = data_race %>% 
+  filter(Incident.Year<= 2024) %>%
   mutate(HRI.Incident.Count = as.numeric(ifelse(HRI.Incident.Count == "*", 2, HRI.Incident.Count)),
          Incident.Year = as.integer(Incident.Year),
          HRI.Incident.Count = as.numeric(HRI.Incident.Count)) %>%
