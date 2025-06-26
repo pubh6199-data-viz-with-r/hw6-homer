@@ -1,19 +1,18 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/2V1dzZDL)
-# Final Project: [Insert Project Title]
+# Final Project: Virginia HRI Dashboard
 
-Authors: [Your Full Name]  
+Authors: Alia Jamil and Nina Wubu
 Course: PUBH 6199 – Visualizing Data with R  
-Date: [Insert Date]
+Date: 2025-06-26
 
 ## 🔍 Project Overview
 
-[Write 2–3 sentences about your topic and what your project aims to explore or visualize.]
+Our topic is extreme heat and the effect on public health. We will look at incidence of heat-related illness through emergency department visits over time and by region of the United States to assess public health risk by demographic group. 
+
 
 ## 📊 Final Write-up
 
-The final write-up, including code and interpretation of the visualizations, is available here:
-
-👉 [**View the write-up website**](https://pubh6199-data-viz-with-r.github.io/hw6-YOUR-TEAM-NAME/)
+The final write-up, including code and interpretation of the visualizations, is available in the index.html.
 
 ## 📂 Repository Structure
 
@@ -53,7 +52,7 @@ shiny::runApp("shiny-app")
 
 If your project includes a Shiny app, you can access it here:
 
-👉 [https://yourusername.shinyapps.io/your-app-name](https://yourusername.shinyapps.io/your-app-name)
+👉 [shiny dashboard](https://ajamil.shinyapps.io/final-project/)
 
 ## 📦 Packages Used
 
@@ -64,4 +63,4 @@ If your project includes a Shiny app, you can access it here:
 
 ## ✅ To-Do or Known Issues
 
-[Optional section for you to note improvements or bugs.]
+Title missing in app.

@@ -1,6 +1,6 @@
 ---
-title: "Final Project: [YOUR TITLE HERE]"
-author: "[YOUR NAMES]"
+title: "Final Project: HRI Incidence in Virginia"
+author: "Nina and Alia"
 date: "2025-06-26"
 params:
   number: 6
@@ -10,7 +10,7 @@ format:
     toc: true
     toc-location: right
     code-fold: true
-    theme: flatly
+    theme: cosmo
     self-contained: true
 execute:
   echo: true
@@ -37,68 +37,67 @@ knitr::opts_chunk$set(
 
 ## Introduction
 
-_Briefly introduce your topic and research question._
+Our topic is extreme heat and the effect on public health. We will look at incidence of heat-related illness through emergency department visits over time and by county in Virginia to assess public health risk. 
+
+ Our goal of this project is to tell a clear, data-driven story about how rising temperatures affect health outcomes. Specifically, we want to Identify how ER visits for heat-related illness increase on extreme heat days, examine which demographic groups are most impacted by these events (e.g., by age, race, income level). By using visualizations to present these insights, we are hoping to demonstrate the real-world consequences of climate change on health and contribute to conversations about public health as well as answer our research question:
+How do extreme heat events affect emergency room visit rates for heat-related illnesses in the U.S (specifically Virginia), and how do these impacts vary across time, geographic regions (different counties in Virginia), and demographic groups?
+
 
 ## Data
 
-_Describe your data source(s), including where it came from, the key variables, and any pre-processing steps._
+We were able to find our datasets in google dataset and specifically in virginia's department of health website. There are 5 datasets, we used the first two to gain perspective of Virginia's population based on race, age and county since they contained counts that are segmented by demographic characteristics such as sex, race, ethnicity, and age. The next three dataset contained our heat related incidents counts based on age, race and county. We were able to clean and filter our datasets and merged our HRI datasets grouped by county and age to the datasets containing Virginia's population based on the factors needed. 
+
+
 
 ```{r}
 #| eval: false
 # Load libraries and data
 library(tidyverse)
-
-data <- read_csv("data/my_data.csv")
-glimpse(data)
+data_pop <- read_csv("app-data/data_pop.csv")
+data_pop_age <- read_csv("app-data/data_pop_age.csv")
+data_locality <- read.csv("app-data/data_locality")
+data_age <- read.csv("app-data/data_age")
+data_race <- read.csv("app-data/pud-vdh-hri-ems-byrace")
 ```   
 
-## Visualizatiob 1: [Title Here]
 
-_Describe what this plot shows, and why it's important._
+## Shiny app: Virginia HRI Dashboard
 
-```{r}
-# your code here
-```
+Our app provides HRI data to the general public. People can see the data broken down by county, age group, and racial group. Adding to the online resources the Health Department already provides, our aim is to raise awareness among residents. Public health organizations and the local government can use the dashboard to tailor heat protection and prevention interventions to certain populations. The dashboard shows demographic trends over time, indicating an increased need for HRI prevention.
 
-## Visualization 2: [Title Here]
-
-_Describe what this plot shows, and why it's important._
-
-```{r}
-# your code here
-```
-
-## Visualization 3: [Title Here]
-
-_Describe what this plot shows, and why it's important._
-
-```{r}
-# your code here
-```
-
-## OR Shiny app: [Title Here]
-
-_If you choose to create a Shiny app, describe the app's purpose and functionality. Save your code inside the shiny-app/ folder, replace the URL below with your app's URL_
-
-[Click here to open the interactive Shiny app](https://cindyhu.shinyapps.io/two-files-app/)
+[Click here to open the interactive Shiny app](https://ajamil.shinyapps.io/final-project/)
 
 ## Interpretation
 
-_Summarize your key findings. What do your visualizations reveal?_
+Our first graph demonstrates rates of heat-related illness by county. Roanoke City seems to have higher risk of HRI Incidents which is surprising as we were expecting Virginia Beach to be at the highest due to its population and the amount of time spent outside by citizens there. The elevated HRI rates in Roanoke may point to factors such as differences in public health infrastructure, population vulnerability, or access to cooling resources like air conditioning and public shelters.
+
+Our second graph demonstrates heat-related illness incidents by age group. The most vulnerable age groups are older (65 years of age or older). 
+This group are particularly susceptible to extreme heat due to physiological factors—such as reduced ability to regulate body temperature—as well as social and environmental conditions, including limited mobility, reliance on caregivers, or lack of access to climate-controlled environments. This pattern aligns with existing public health research and emphasizes the need for targeted heat mitigation strategies for this age group.
+
+Our last graph shows heat-related illness faceted by racial groups. Over time, heat-related illness has increased in most groups. While the overall increase is consistent, some groups may experience disproportionately higher rates depending on geographic location, access to resources, and underlying health disparities. This trend underscores the broad and growing public health threat posed by climate change, while also suggesting the need for further investigation into how structural inequalities may influence heat vulnerability among different communities.
+
 
 ## Limitations
 
-_Discuss any data quality or design limitations._
+One limitation we encountered was that HRI Incident Count under 5 was not reported. It is a common method public agencies use to preserve data privacy and reduce the reidentification risk. While we replace the values with 2, the data may be skewed left.
+
+Another limitation we encountered was the years included in our second dataset containing populations. We ran into some issues because our first two datasets ended at 2023 while the next three datasets went on until 2025 so there were exactly 6 rows that were removed in order to get accurate visualizations.
+
+We also measured HRI incidents through hospital emergency visits, so this may under-represent the true public health effect of extreme heat. People may ignore symptoms, decline to visit the hospital, or even be misdiagnosed.
+
 
 ## Conclusion
 
-_Wrap up your project with a takeaway message or next steps._
+As extreme heat becomes more common, the effect on public health must be studied. We examined which demographic groups are most impacted by these events. Extreme heat events may increase the burden on hospitals in the summer months, and better resource allocation is needed. 
+
+We hope to demonstrate the real-world consequences of climate change on health and contribute to conversations about public health, especially as we experience a heatwave this week. Virginia government, non-profit, and other organizations can easily access HRI data using our dashboard. Our project helps translate data to non-scientific populations and allows for clarity on the burden of HRI in Virginia.
+
 
 ## References
 
-_Include any references to data sources, packages, or literature you used. If your visualization design is inspired by someone else's work, cite those too._
-
-1. Reference 1
-2. Reference 2
-3. Reference 3
+1. https://data.virginia.gov/dataset/ems-heat-related-illness-incidents-by-age-and-year/resource/c3e4e4b9-849a-498a-b7d4-4da60ed56a37
+2. https://data.virginia.gov/dataset/ems-heat-related-illness-incidents-by-race-and-year/resource/298ae0e3-26dd-4b44-9c3b-248bb5df1317
+3. https://data.virginia.gov/dataset/ems-heat-related-illness-incidents-by-locality-and-month-year
+4. https://data.virginia.gov/dataset/vdh-virginia-single-race-population-estimates/resource/b0dc2183-05de-4dad-94ac-488d52117b35
+5. https://www.vdh.virginia.gov/surveillance-and-investigation/syndromic-surveillance/hri-surveillance/
 
